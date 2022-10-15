@@ -26,7 +26,6 @@ Route::get('add', function () {
 //     return view('index');
 // });
 
-Route::get('update/{id}', [BooksController::class, 'update'])->name('up');
 
 Route::get('view', function () {
     return view('view_books');
@@ -35,6 +34,6 @@ Route::get('view', function () {
 Route::get('/index', [BooksController::class, 'index']);
 
 Route::post('/req', [BooksController::class, 'store'])->name('req');
-Route::get('/delete/{id}', [BooksController::class, 'destroy'])->name('delete');
-Route::put('/put/{id}', [BooksController::class, 'updateBook'])->name('put');
+
+
 // Route::post('/update_books', [BooksController::class, 'update'])->name('update_books');

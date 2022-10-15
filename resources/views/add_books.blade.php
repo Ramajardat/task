@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Add Book</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link
@@ -12,10 +12,13 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
 </head>
-<body>
-    <div class="container w-25">
+<body style="background-image:url(https://images2.alphacoders.com/261/26102.jpg)">
+    <div class="container w-25 bg-light " style="margin-top: 7%;border-radius:2%">
     <form action="/req" method="POST">
         @csrf
+        <div class="mb-3">
+            <h1>Add new book:</h1>
+          </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Book title</label>
           <input name="book_title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -36,8 +39,18 @@
             <div id="emailHelp" class="form-text"></div>
           </div>
 
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-warning" style="margin-bottom:1% ">Add</button>
       </form>
     </div>
+
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 </body>
 </html>

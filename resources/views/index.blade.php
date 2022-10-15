@@ -14,9 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
 <style>body {
-	font-family: "Caveat";
     /* background-color: #2A3166; */
-    background: #000033
+    background: #f5eec2
 	;
 }
 h2 {
@@ -28,10 +27,10 @@ h2 {
 
 
 header{
-    background-color:#F4ABAA;
+    background-color:#416a59;
     display: flex;
     justify-content: center;
-    color: #2A3166;
+    color: #fff;
 }
 
 
@@ -40,6 +39,8 @@ header #header-menu{
     padding: 10%;
     display: flex;
     gap: 30%;
+    color: #fff;
+
 }
 
 
@@ -52,24 +53,6 @@ header #header-menu li > a{
 
 
 
-footer{
-    background-color:#F4ABAA;
-    display: flex;
-    justify-content: center;
-}
-
-footer #social{
-    list-style: none;
-    padding: 1.5%;
-    display: flex;
-    gap: 10%;
-
-}
-
-footer #social li > a{
-    text-decoration: none;
-    color: #2A3166;
-}
 
 
 
@@ -84,10 +67,10 @@ p {
     <header>
         <nav
           class="navbar navbar-expand-sm navbar-light"
-          style="background-color: #F4ABAA"
+          style="background-color: #416a59;"
         >
           <div class="container">
-            <a class="navbar-brand" href="#">Books</a>
+            <a class="navbar-brand" href="#" style="color:#fff">Books</a>
 
 
             <button
@@ -102,19 +85,19 @@ p {
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
-              <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <ul class="navbar-nav me-auto mt-2 mt-lg-0" >
                 <li class="nav-item active">
-                  <a class="nav-link" href="./index.html"
+                  <a class="nav-link" href="./index" style="color:#fff"
                     >Home</a
                   >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./index.html"
-                      >Home</a
+                    <a class="nav-link" href="./index" style="color:#fff"
+                      >Update</a
                     >
                   </li> <li class="nav-item">
-                    <a class="nav-link" href="./index.html"
-                      >Home</a
+                    <a class="nav-link" href="./index" style="color:#fff"
+                      >View</a
                     >
                   </li>
               </ul>
@@ -123,28 +106,28 @@ p {
           </div>
         </nav>
       </header>
+      <a href="/add"  class="btn btn-success p-2" style="margin-left: 4%;margin-top:2%">Add New Book</a>
 
-<div class=" d-flex">
+<div class=" d-flex h-100">
 @foreach ($books as $book)
-<div id="cardsDiv" class="card m-5" style="width: 15rem;">
-    <img src="{{$book['book_image']}}" class="card-img-left" alt="...">
+<div  class="card m-5" style="width: 22rem;height:30rem">
+    <img src="{{$book['book_image']}}" class="card-img-top" style="height:320px" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{$book['book_title']}}</h5>
       <p class="card-text">{{$book['book_auther']}}</p>
       <p class="card-text">{{$book['book_description']}}</p>
-      <a href="delete/{{$book['id']}}"  class="btn btn-primary">Delete</a>
-      <a href="update/{{$book['id']}}" class="btn btn-primary">Update</a>
+      <a href="#"  class="btn btn-danger p-1">Delete</a>
+      <a href="#" class="btn btn-warning p-1">Update</a>
     </div>
   </div>
 
   @endforeach
 </div>
   <footer>
-    <ul id="social">
 
 
-      <li><p style="font-size: 15px">©RJ</p></li>
-    </ul>
+      <p style="background-color:#416a59;bottom:0;height:50px;text-align:center;color:#fff;margin-top: 50px;
+      ">©Books</p>
   </footer>
 </body>
 </html>

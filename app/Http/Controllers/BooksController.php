@@ -16,10 +16,8 @@ class BooksController extends Controller
     public function index()
     {
         $bookView = array(
-
             // Ankit will act as key
             "1" => array(
-
                 // Subject and marks are
                 // the key value pair
                 "book_title" => "Things Fall Apart",
@@ -28,7 +26,6 @@ class BooksController extends Controller
                 "book_image" => "https://m.media-amazon.com/images/I/81H+63TZuFL.jpg",
             ),
             "2" => array(
-
                 // Subject and marks are
                 // the key value pair
                 "book_title" => 'Fairy tales',
@@ -52,15 +49,12 @@ class BooksController extends Controller
                 "book_auther" => 'Jane Austen',
                 "book_image" => "https://m.media-amazon.com/images/M/MV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE@._V1_.jpg",
             ), "5" => array(
-
                 // Subject and marks are
                 // the key value pair
                 "book_title" => "Wuthering Heights",
                 "book_description" => "United Kingdom",
                 "book_auther" => 'Emily Bront',
                 "book_image" => "https://m.media-amazon.com/images/I/71TjAcMTDML.jpg",
-
-
             ),
         );
         $books = Books::all();
@@ -92,6 +86,12 @@ class BooksController extends Controller
         // $book = Books::all();
         // dd($book);
 
+        $this->validate($request, [
+            'book_title'         => 'required',
+            'book_description'   => 'required',
+            'book_auther'        => 'required',
+            'book_image'         => 'required',
+        ]);
         $book = new Books();
 
         $book->book_title = $request->book_title;
@@ -146,20 +146,5 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        $book = Books::find($id);
-        $book->delete();
-        return redirect('/index');
-    }
-
-    public function updateBook(Request $request, $id)
-    {
-        # code...
-        $book = Books::find($id);
-        $book->book_title = $request->book_title;
-        $book->book_description = $request->book_description;
-        $book->book_auther = $request->book_auther;
-        $book->book_image = $request->book_image;
-        $book->save();
-        return redirect('/index');
     }
 }
