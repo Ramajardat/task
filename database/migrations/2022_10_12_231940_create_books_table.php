@@ -21,7 +21,9 @@ return new class extends Migration
             $table->text('book_title');
             $table->longText('book_description');
             $table->text('book_auther');
-            $table->longText('book_image');
+            $table->binary('book_image');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -33,5 +35,8 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('books');
+        Schema::table('book_models', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

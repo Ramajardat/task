@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Books</title>
+    <title>Find Book</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link
     rel="stylesheet"
@@ -106,32 +106,15 @@ p {
             </div>
 
           </div>
-          <div class="searchBooh">
-            <form action="/findBook" method="POST">
-              @csrf
-              <div class="mb-3">
-                <input name="search" type="text" style="width:300px; margin-top: 8px;
-                " placeholder="Search for a book" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text"></div>
-              </div>
-            </form>
-          </div>
+
         </nav>
       </header>
-      <a href="/add"  class="btn btn-success p-2" style="margin-left: 4%;margin-top:2%">Add New Book</a>
-      <a href="/trash"  class="btn btn-danger p-2" style="margin-left: 1%;margin-top:2%">view trash</a>
-
-      <a href="/sortUp" class="btn btn-light" style="margin-left: 1%;margin-top:2%">sort desc</a>
-    <a href="/sortDown" class="btn btn-dark" style="margin-left: 1%;margin-top:2%">sort Asc</a>
-
-
-
 
 <div class=" d-flex h-100">
+
 @foreach ($books as $book)
-<div  class="card m-5" style="width: 25rem;height:32rem">
-    <img  src="data:image/jpg;charset=utf8;base64,
-    {{$book['book_image']}}" class="card-img-top" style="height:320px" alt="...">
+<div  class="card m-5" style="width: 22rem;height:30rem">
+    <img src="{{$book['book_image']}}" class="card-img-top" style="height:320px" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{$book['book_title']}}</h5>
       <p class="card-text">{{$book['book_auther']}}</p>
@@ -144,10 +127,13 @@ p {
 
   @endforeach
 </div>
+
+
+
   <footer>
 
 
-      <p style="background-color:#416a59;bottom:0;height:50px;text-align:center;color:#fff;margin-top:0;
+      <p style="background-color:#416a59;bottom:0;height:50px;text-align:center;color:#fff;margin-top: 50px;
       ">©Books</p>
   </footer>
 </body>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Books;
+use Illuminate\Http\UploadedFile;
+
 
 
 class BooksController extends Controller
@@ -92,12 +94,15 @@ class BooksController extends Controller
             'book_auther'        => 'required',
             'book_image'         => 'required',
         ]);
+
+        $image = base64_encode(file_get_contents($request->file('book_image')));
+
         $book = new Books();
 
         $book->book_title = $request->book_title;
         $book->book_description = $request->book_description;
         $book->book_auther = $request->book_auther;
-        $book->book_image = $request->book_image;
+        $book->book_image = $image;
         $book->save();
         return redirect('/index');
     }
@@ -146,5 +151,56 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
+        $book = Books::find($id);
+        $book->delete();
+        return redirect('/index')->with('status', 'Deleted successfully');
+    }
+    public function updateBook(Request $request, $id)
+    {
+        # code...
+        $image = base64_encode(file_get_contents($request->file('book_image')));
+
+        $book = Books::find($id);
+        $book->book_title = $request->book_title;
+        $book->book_description = $request->book_description;
+        $book->book_auther = $request->book_auther;
+        $book->book_image = $image;
+        $book->save();
+        return redirect('/index');
+    }
+
+    public function findBook(Request $request)
+    {
+        $book = Books::where('book_title', 'like', '%' . $request->search . '%')->get();
+
+        return view('index', ['books' => $book]);
+    }
+
+    public function soft(Request $request)
+    {
+        $books = Books::onlyTrashed()->get();
+        return view('trash', ['books' => $books]);
+    }
+
+    public function restore($id)
+    {
+        $books = Books::withTrashed()->find($id)->restore();
+        return redirect('index');
+    }
+
+    public function fdelete($id)
+    {
+        $books = Books::onlyTrashed()->where('id', $id)->forceDelete();
+        return redirect('trash');
+    }
+    public function sortUp()
+    {
+        $book = Books::orderBy('updated_at', 'desc')->get();
+        return view('index', ['books' => $book]);
+    }
+    public function sortDown()
+    {
+        $book = Books::orderBy('updated_at', 'asc')->get();
+        return view('index', ['books' => $book]);
     }
 }
